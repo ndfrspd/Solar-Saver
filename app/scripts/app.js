@@ -10,3 +10,5 @@
  */
 angular
   .module('hackAeApp', []);
+
+$(".button-collapse").sideNav();
