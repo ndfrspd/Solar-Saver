@@ -38,11 +38,11 @@
 		<div class="container">
 
 
-
 			<div id="locationField">
 				<input id="autocomplete" placeholder="Enter your address"
 							 onFocus="geolocate()" type="text">
 			</div>
+			<a class="waves-effect waves-light btn" href="#!/savings"><i class="material-icons right">cloud</i>button</a>
 
 			<table id="address">
 				<tr>
@@ -87,10 +87,6 @@
 		</div>
 
 
-		<!--
-<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap"
-async defer></script>
--->
 		<!--		<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>-->
 		<!-- build:js(.) scripts/vendor.js -->
 		<!-- bower:js -->
@@ -102,32 +98,19 @@ async defer></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
 
-
-		<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALoiIKoLrT1XDUCLG-ApUWBzxtsrh-hRs&libraries=places&callback=initAutocomplete"
-async defer></script>-->
-
 		<div ng-view></div>
 
 		<!-- build:js({.tmp,app}) scripts/scripts.js -->
 		<script src="scripts/app.js"></script>
 		<script src="scripts/controllers/main.js"></script>
+		<script src="scripts/controllers/savings.js"></script>
 		<!-- Replace the value of the key parameter with your own API key. -->
 
 		<script>
 
-			// This example displays an address form, using the autocomplete feature
-			// of the Google Places API to help users fill in the information.
-
-			// This example requires the Places library. Include the libraries=places
-			// parameter when you first load the API. For example:
-			// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"
 						async defer></script>
-
-
 
 		<!-- endbuild -->
 	</body>

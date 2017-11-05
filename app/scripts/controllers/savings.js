@@ -2,15 +2,13 @@
 
 /**
  * @ngdoc function
- * @name hackAeApp.controller:MainCtrl
+ * @name hackAeApp.controller:SavingsCtrl
  * @description
- * # MainCtrl
+ * # SavingsCtrl
  * Controller of the hackAeApp
  */
 angular.module('hackAeApp')
-  .controller('MainCtrl', function () {
+  .controller('SavingsCtrl', function () {
 	
-	 
-
 
   });

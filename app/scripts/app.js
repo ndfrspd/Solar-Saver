@@ -23,8 +23,22 @@ hackae.config(['$routeProvider', function($routeProvider) {
 		.when('/', {
 		templateUrl: 'views/main.html',
 		controller: 'MainCtrl'
+	})
+		.when('/savings', {
+		templateUrl: 'views/savings.html',
+		controller: 'SavingsCtrl'
 	});
 }]);
+
+//hackae.value('GlobalLatitude', '0');
+//hackae.value('GlobalLongitude', '0');
+//
+//hackae.value('geolocationData', {
+//	LAT:1,
+//	LONG:2
+//});
+
+
 
 var placeSearch, autocomplete;
 var componentForm = {
@@ -74,20 +88,38 @@ function fillInAddress() {
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
 	if (navigator.geolocation) {
-		
+
 		var geocoder = new google.maps.Geocoder();
-    var address = document.getElementById("autocomplete").value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
+		var address = document.getElementById("autocomplete").value;
+		geocoder.geocode( { 'address': address}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
 
-				console.log("Latitude", results[0].geometry.location.lat());
-				console.log("Longitude", results[0].geometry.location.lng());
-      } 
+				//				console.log("Latitude", results[0].geometry.location.lat());
+				//				console.log("Longitude", results[0].geometry.location.lng());
+				//
 
-      else {
+				fetch("https://developer.nrel.gov/api/utility_rates/v3.json?api_key=DEMO_KEY&lat=" + results[0].geometry.location.lat() + "&lon=" + results[0].geometry.location.lng())
+					.then((resp) => resp.json())
+					.then(function(data) {
+						console.log(data);
+							// Industrial utility rate
+							$('.industrial').text("Industrial: " + data.outputs.industrial);
+							// Commercial utility rate
+							$('.commercial').text("Commercial: " + data.outputs.commercial);
+							// Residential utility rate
+							$('.residential').text("Residential: " + data.outputs.residential);
+
+				})
+					.catch(function(error) {
+					console.log(error);
+				}); 
+
+			} 
+
+			else {
 				console.log("Couldn't find geocode data!");
-      }
-    });
+			}
+		});
 
 	}
 }
