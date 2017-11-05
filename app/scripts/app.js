@@ -33,14 +33,35 @@ hackae.config(['$routeProvider', function($routeProvider) {
 
 
 $(".responseBoard").hide();
+$(".userInput").hide();
 
 $("#searchbtn").click(function(){
-	$(".responseBoard").show();
-	$(".userForm").hide();
-	
-	$("body").css('background','linear-gradient(to bottom,  #8cd98c 0%, #66cc66 35%, #f1f4f6 36%, #f1f4f6 100%)');
-	$("body").css('background-repeat','no-repeat');
+	$('.userForm').addClass('animated bounceOut');
+
+	$('.userInput').addClass('animated fadeIn');
+	$('.responseBoard').addClass('animated fadeInUp');
+
+	setTimeout(function(){
+
+
+
+
+		$(".userInput").show();
+		$(".responseBoard").show();
+		$(".userForm").hide();
+
+		$("body").css('background','linear-gradient(to bottom,  #5585f7 0%, #366ff6 55%, #f1f4f6 36%, #f1f4f6 100%)');
+		$("body").css('background-repeat','no-repeat');
+		$(".logo").css('color','white');
+	},1000);
+
+
+
 });
+
+function animateMove(event) {
+
+}
 
 var placeSearch, autocomplete;
 var componentForm = {
@@ -61,7 +82,7 @@ function initAutocomplete() {
 
 	// When the user selects an address from the dropdown, populate the address
 	// fields in the form.
-//	autocomplete.addListener('place_changed', fillInAddress);
+	//	autocomplete.addListener('place_changed', fillInAddress);
 	autocomplete.addListener('place_changed', geolocate);
 }
 
@@ -106,11 +127,11 @@ function geolocate() {
 					var commercialValue = data.outputs.commercial;
 					var residentialValue = data.outputs.residential;
 					// Industrial utility rate
-					$('.industrial').text("Industrial: " + industrialValue);
+					$('.industrial').text("$ " + industrialValue + " kWh");
 					// Commercial utility rate
-					$('.commercial').text("Commercial: " + commercialValue);
+					$('.commercial').text("$ " + commercialValue + " kWh");
 					// Residential utility rate
-					$('.residential').text("Residential: " + residentialValue);
+					$('.residential').text("$ " + residentialValue + " kWh");
 
 					// Solar rates
 					fetch("https://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=1jXG0B0jJJRZt9pJqHljfY6CpCiOZNrzTb8JsRpA&lat=" + results[0].geometry.location.lat() + "&lon=" + results[0].geometry.location.lng())
@@ -118,16 +139,82 @@ function geolocate() {
 						.then(function(data) {
 						console.log(data);
 
+						var monthlyDataJan= data.outputs.avg_ghi.monthly.jan;
+						var monthlyDataFeb= data.outputs.avg_ghi.monthly.feb;
+						var monthlyDataMar= data.outputs.avg_ghi.monthly.mar;
+						var monthlyDataApr= data.outputs.avg_ghi.monthly.apr;
+						var monthlyDataMay= data.outputs.avg_ghi.monthly.may;
+						var monthlyDataJun= data.outputs.avg_ghi.monthly.jun;
+						var monthlyDataJul= data.outputs.avg_ghi.monthly.jul;
+						var monthlyDataAug= data.outputs.avg_ghi.monthly.aug;
+						var monthlyDataSept= data.outputs.avg_ghi.monthly.sep;
+						var monthlyDataOct= data.outputs.avg_ghi.monthly.oct;
+						var monthlyDataNov= data.outputs.avg_ghi.monthly.nov;
+						var monthlyDataDec= data.outputs.avg_ghi.monthly.dec;
+
+						var ctx = document.getElementById("myChart");
+						var myChart = new Chart(ctx, {
+							type: 'line',
+							data: {
+								labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+								datasets: [{
+									label: 'Monthly Irradiance',
+									data: [monthlyDataJan, monthlyDataFeb, monthlyDataMar, monthlyDataApr, monthlyDataMay, monthlyDataJun, monthlyDataJul,monthlyDataAug,monthlyDataSept,monthlyDataOct,monthlyDataNov,monthlyDataDec],
+									backgroundColor: 'rgba(255,255,255,0)',
+									borderColor: [
+										'rgba(54,111,246,1)',
+									],
+									borderWidth: 2
+								}]
+							},
+
+							options: {
+								animation: {
+									duration: 0, // general animation time
+								},
+								hover: {
+									animationDuration: 0, // duration of animations when hovering an item
+								},
+								responsiveAnimationDuration: 0, // animation duration after a resize
+								scales: {
+									xAxes: [{
+										gridLines: {
+											display: false
+										}
+									}],
+									yAxes: [{
+										gridLines: {
+											display: false
+										},
+										ticks: {
+											beginAtZero: true
+										}
+									}]
+								}
+							}
+						});
+
 						var globalHor_Irr = data.outputs.avg_ghi.annual;
 						var avgDirNorm_Irr = data.outputs.avg_dni.annual;
+
+
 						// Direct Normal - Angled Roof
 						$('.annual_avg_dni').text("annual_avg_dni: " + avgDirNorm_Irr);
 						// Global Horizontal - Flat roof
 						$('.annual_avg_ghi').text("annual_avg_ghi: " + globalHor_Irr);
 
+
+						var address = autocomplete.getPlace().formatted_address;
 						var residenceType = $("#residenceType option:selected" ).text();
 						var roofType = $("#roofType option:selected" ).text();
 						var energyUsage = $( "#energyUsage" ).val();
+
+
+						$('.address').text(address);
+						$('.retype').text(residenceType);
+						$('.rotype').text(roofType);
+						$('.eusage').text(energyUsage);
+
 
 						console.log("residenceType: ", residenceType);
 						console.log("roofType: ", roofType);
@@ -150,7 +237,7 @@ function geolocate() {
 						var energyUsage_year = energyUsage * 12;
 						var annualGrid_cost = residencyTypeValue * energyUsage_year;
 
-						console.log("Annual Grid: " + annualGrid_cost);
+						console.log("Annual Utility Cost: " + annualGrid_cost);
 
 
 						var roofTypeValue;
@@ -171,7 +258,7 @@ function geolocate() {
 						var solarCost = (11000/20)*panelNumber;
 
 						var gridCostPerYear = residencyTypeValue*energyUsage_year;
-						var yearsSolarEff = solarCost/gridCostPerYear;
+						var yearsSolarEff = Math.floor(solarCost/gridCostPerYear);
 
 						console.log("Number of Panels: " + panelNumber);
 						console.log("Irradiance per panel: " + irr_Panel);
@@ -179,14 +266,27 @@ function geolocate() {
 						console.log("Grid value per Year: " + gridCostPerYear);
 						console.log("Num years for solar over grid: " + yearsSolarEff);
 
+
+						// Industrial utility rate
+						$('.numYears').text(yearsSolarEff + " Years");
+						// Commercial utility rate
+						$('.estimatedPanels').text(panelNumber);
+						// Residential utility rate
+						$('.totalSolarCost').text("$ " + solarCost + " USD");
+
+
+
 						var message;
 						if(yearsSolarEff < 15)
 						{
 							message = "Solar is viable!"
+							$('.solarVerdict').text("Congrats, your property is solar ready!");
 
 						}
 						else{
 							message = "Solar is not the best option based on your selection!";
+							$(".solarVerdict").css('color','red');
+							$('.solarVerdict').text("Based on our calculations, solar power is not the most economic option for you.");
 						}
 
 						console.log(message);

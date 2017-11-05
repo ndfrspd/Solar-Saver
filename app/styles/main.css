@@ -8,6 +8,10 @@ body {
 	background-repeat: no-repeat;
 }
 
+.userInput {
+	text-align: center;
+}
+
 .userForm {
 /*	height: 75vh;*/
 	box-shadow: 15px 15px 45px 0px rgba(46,61,73,0.1);
@@ -22,6 +26,47 @@ body {
 	box-shadow: 15px 15px 45px 0px rgba(46,61,73,0.1);
 	border-radius: 0.8rem;
 	margin-top: 1%;
-	padding: 5% 5% 5% 5%;
+	padding: 2% 5% 5% 5%;
+	background-color: #f1f4f6;
 
+  -webkit-animation-delay: 0.8s;
+	-moz-animation-delay: 0.8s;
+	animation-delay: 0.8s;
+
+}
+
+.headerFont {
+	font-size: 16px;
+}
+
+.headerUnderFont {
+	font-size: 10px;
+}
+
+.solarVerdict {
+	color: green;
+}
+
+.pushDown {
+	margin-top: 3%;
+}
+
+a {
+	color: black;
+}
+
+a:link {
+	color: black;
+}
+
+a:visited {
+	color: black;
+}
+
+a:hover {
+	color: black;
+}
+
+a:active {
+	color: black;
 }
