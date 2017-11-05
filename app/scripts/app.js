@@ -46,11 +46,13 @@ function initAutocomplete() {
 	// When the user selects an address from the dropdown, populate the address
 	// fields in the form.
 	autocomplete.addListener('place_changed', fillInAddress);
+	autocomplete.addListener('place_changed', geolocate);
 }
 
 function fillInAddress() {
 	// Get the place details from the autocomplete object.
 	var place = autocomplete.getPlace();
+	console.log(place);
 
 	for (var component in componentForm) {
 		document.getElementById(component).value = '';
@@ -72,18 +74,20 @@ function fillInAddress() {
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var geolocation = {
-				lat: position.coords.latitude,
-				lng: position.coords.longitude
-			};
-			
-			console.log(geolocation);
-			var circle = new google.maps.Circle({
-				center: geolocation,
-				radius: position.coords.accuracy
-			});
-			autocomplete.setBounds(circle.getBounds());
-		});
+		
+		var geocoder = new google.maps.Geocoder();
+    var address = document.getElementById("autocomplete").value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+
+				console.log("Latitude", results[0].geometry.location.lat());
+				console.log("Longitude", results[0].geometry.location.lng());
+      } 
+
+      else {
+				console.log("Couldn't find geocode data!");
+      }
+    });
+
 	}
 }

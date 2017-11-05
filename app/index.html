@@ -15,7 +15,6 @@
 		<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-		<link rel="stylesheet" href="bower_components/angular-google-places-autocomplete/src/autocomplete.css">
 		<!-- endbuild -->
 	</head>
 	<body ng-app="hackAeApp">
@@ -38,45 +37,45 @@
 
 		<div class="container">
 
-		
 
-		<div id="locationField">
-			<input id="autocomplete" placeholder="Enter your address"
-						 onFocus="geolocate()" type="text">
-		</div>
 
-		<table id="address">
-			<tr>
-				<td class="label">Street address</td>
-				<td class="slimField">
-					<input class="field" id="street_number" disabled="true">
-				</td>
-				<td class="wideField" colspan="2">
-					<input class="field" id="route" disabled="true">
-				</td>
-			</tr>
-			<tr>
-				<td class="label">City</td>
-				<td class="wideField" colspan="3">
-					<input class="field" id="locality" disabled="true">
-				</td>
-			</tr>
-			<tr>
-				<td class="label">State</td>
-				<td class="slimField">
-					<input class="field" id="administrative_area_level_1" disabled="true">
-				</td>
-				<td class="label">Zip code</td>
-				<td class="wideField">
-					<input class="field" id="postal_code" disabled="true"></td>
-			</tr>
-			<tr>
-				<td class="label">Country</td>
-				<td class="wideField" colspan="3">
-					<input class="field" id="country" disabled="true">
-				</td>
-			</tr>
-		</table>
+			<div id="locationField">
+				<input id="autocomplete" placeholder="Enter your address"
+							 onFocus="geolocate()" type="text">
+			</div>
+
+			<table id="address">
+				<tr>
+					<td class="label">Street address</td>
+					<td class="slimField">
+						<input class="field" id="street_number" disabled="true">
+					</td>
+					<td class="wideField" colspan="2">
+						<input class="field" id="route" disabled="true">
+					</td>
+				</tr>
+				<tr>
+					<td class="label">City</td>
+					<td class="wideField" colspan="3">
+						<input class="field" id="locality" disabled="true">
+					</td>
+				</tr>
+				<tr>
+					<td class="label">State</td>
+					<td class="slimField">
+						<input class="field" id="administrative_area_level_1" disabled="true">
+					</td>
+					<td class="label">Zip code</td>
+					<td class="wideField">
+						<input class="field" id="postal_code" disabled="true"></td>
+				</tr>
+				<tr>
+					<td class="label">Country</td>
+					<td class="wideField" colspan="3">
+						<input class="field" id="country" disabled="true">
+					</td>
+				</tr>
+			</table>
 
 		</div>
 
@@ -108,14 +107,14 @@ async defer></script>
 async defer></script>-->
 
 		<div ng-view></div>
-		
+
 		<!-- build:js({.tmp,app}) scripts/scripts.js -->
 		<script src="scripts/app.js"></script>
 		<script src="scripts/controllers/main.js"></script>
 		<!-- Replace the value of the key parameter with your own API key. -->
-		
+
 		<script>
-			
+
 			// This example displays an address form, using the autocomplete feature
 			// of the Google Places API to help users fill in the information.
 
@@ -123,7 +122,7 @@ async defer></script>-->
 			// parameter when you first load the API. For example:
 			// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-			
+
 		</script>
 		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initAutocomplete"
 						async defer></script>
