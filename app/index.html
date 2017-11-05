@@ -23,90 +23,101 @@
 		<!-- Add your site or application content here -->
 		<div class="header">
 			<h5 class="center-align">Solar Saver</h5>
-<!--
-			<nav>
-				<div class="nav-wrapper">
-					<a href="#!" class="brand-logo">Solar Saver</a>
-					<a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-					<ul class="right hide-on-med-and-down">
-						<li><a href="/#">Home</a></li>
-					</ul>
-					<ul class="side-nav" id="mobile-demo">
-						<li><a href="/#">Home</a></li>
-					</ul>
-				</div>
-			</nav>
--->
 		</div>
 
-			<div class="row">
-				<div class="col s10 m10 l10 offset-s1 offset-m1 offset-l1">
-					<div class="userForm hoverable">
-						<div id="locationField">
-							<input id="autocomplete" placeholder="Enter your address"
-										 onFocus="geolocate()" type="text">
-						</div>
+		<div class="row">
+			<div class="col s10 m10 l10 offset-s1 offset-m1 offset-l1">
+				<div class="userForm hoverable">
+					<div id="locationField">
+						<input id="autocomplete" placeholder="Enter your address"
+									 onFocus="geolocate()" type="text">
+					</div>
 
-						<div class="residenceType" style="margin-top: 8%">
-							<div class="input-field" id="residenceType">
-								<select>
-									<option value="" disabled selected>Choose your option</option>
-									<option value="1">Industrial</option>
-									<option value="2">Commercial</option>
-									<option value="3">Residential</option>
-								</select>
+					<div class="residenceType" style="margin-top: 8%">
+						<div class="input-field" id="residenceType">
+							<select>
+								<option value="" disabled selected>Choose your option</option>
+								<option value="1">Industrial</option>
+								<option value="2">Commercial</option>
+								<option value="3">Residential</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="roofType" style="margin-top: 8%">
+						<div class="input-field" id="roofType">
+							<select>
+								<option value="" disabled selected>Choose your option</option>
+								<option value="1">Flat</option>
+								<option value="2">Pyramid</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="energyUsage" style="margin-top: 8%">
+						<input id="energyUsage" placeholder="Energy usage per month (KwH)" type="number">
+					</div>
+
+					<button class="btn waves-effect waves-light center" type="submit" name="action" id="searchbtn">Submit
+						<i class="material-icons right">send</i>
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="row">
+
+			<div class="col s12 m12 l12">
+				<div class="responseBoard hoverable">					
+
+					<h5 class="blue-grey-text lighten-4-text">Overview</h5>
+					<div class="row">
+						<div class="col s12 m12 l12">
+							<div class="card">
+								<div class="card-content">
+									<span class="card-title">NREL API UTILITY RATES</span>
+									<p class="industrial"></p>
+									<p class="commercial"></p>
+									<p class="residential"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col s12 m6 l6">
+							<div class="card">
+								<div class="card-content">
+									<span class="card-title">NREL API UTILITY RATES</span>
+									<p class="industrial"></p>
+									<p class="commercial"></p>
+									<p class="residential"></p>
+								</div>
 							</div>
 						</div>
 
-						<div class="roofType" style="margin-top: 8%">
-							<div class="input-field" id="roofType">
-								<select>
-									<option value="" disabled selected>Choose your option</option>
-									<option value="1">Flat</option>
-									<option value="2">Pyramid</option>
-								</select>
+						<div class="col s12 m6 l6">
+							<div class="card">
+								<div class="card-content">
+									<span class="card-title">NREL API SOLAR RATES</span>
+									<p> </p>
+									<p class="annual_avg_dni"></p>
+									<p class="annual_avg_ghi"></p>
+								</div>
 							</div>
 						</div>
 
-						<div class="energyUsage" style="margin-top: 8%">
-							<input id="energyUsage" placeholder="Energy usage per month (KwH)" type="number">
-						</div>
-
-						<button class="btn waves-effect waves-light center" type="submit" name="action" id="searchbtn">Submit
-							<i class="material-icons right">send</i>
-						</button>
 					</div>
 				</div>
 			</div>
 
 
+		</div>
 
 
-			<div class="responseBoard">
-				<div class="row">
-					<div class="col s12 m6 l6">
-						<div class="card blue-grey darken-1">
-							<div class="card-content white-text">
-								<span class="card-title">NREL API UTILITY RATES</span>
-								<p class="industrial"></p>
-								<p class="commercial"></p>
-								<p class="residential"></p>
-							</div>
-						</div>
-					</div>
 
-					<div class="col s12 m6 l6">
-						<div class="card blue-grey darken-1">
-							<div class="card-content white-text">
-								<span class="card-title">NREL API SOLAR RATES</span>
-								<p class="annual_avg_dni"></p>
-								<p class="annual_avg_ghi"></p>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
 
 
 		<div class="footer">
@@ -126,6 +137,7 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
 
 		<div ng-view></div>
 

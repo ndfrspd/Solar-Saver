@@ -34,12 +34,12 @@ hackae.config(['$routeProvider', function($routeProvider) {
 
 $(".responseBoard").hide();
 
-//function showBoard() {
-//	$(".responseBoard").show();
-//}
-
 $("#searchbtn").click(function(){
 	$(".responseBoard").show();
+	$(".userForm").hide();
+	
+	$("body").css('background','linear-gradient(to bottom,  #8cd98c 0%, #66cc66 35%, #f1f4f6 36%, #f1f4f6 100%)');
+	$("body").css('background-repeat','no-repeat');
 });
 
 var placeSearch, autocomplete;
@@ -183,7 +183,7 @@ function geolocate() {
 						if(yearsSolarEff < 15)
 						{
 							message = "Solar is viable!"
-							$("body").css('background','linear-gradient(to bottom,  #8cd98c 0%,#40bf40 35%,yellow 36%,yellow 100%)');
+
 						}
 						else{
 							message = "Solar is not the best option based on your selection!";
