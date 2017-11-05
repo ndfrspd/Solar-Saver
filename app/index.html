@@ -42,6 +42,32 @@
 				<input id="autocomplete" placeholder="Enter your address"
 							 onFocus="geolocate()" type="text">
 			</div>
+			
+			<div class="residenceType">
+				<div class="input-field col s12 m12 l12" id="residenceType">
+					<select>
+						<option value="" disabled selected>Choose your option</option>
+						<option value="1">Industrial</option>
+						<option value="2">Commercial</option>
+						<option value="3">Residential</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="roofType">
+				<div class="input-field col s12 m12 l12" id="roofType">
+					<select>
+						<option value="" disabled selected>Choose your option</option>
+						<option value="1">Flat</option>
+						<option value="2">Pyramid</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="energyUsage">
+				<input id="energyUsage" placeholder="Energy usage per month (KwH)" type="number">
+			</div>
+			
 			<a class="waves-effect waves-light btn" href="#!/savings"><i class="material-icons right">cloud</i>button</a>
 
 			<table id="address">

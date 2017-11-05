@@ -14,6 +14,7 @@ var hackae = angular.module('hackAeApp', ['ngRoute']);
 $(document).ready(function() {
 
 	$(".button-collapse").sideNav();
+	$('select').material_select();
 
 });
 
@@ -66,7 +67,7 @@ function initAutocomplete() {
 function fillInAddress() {
 	// Get the place details from the autocomplete object.
 	var place = autocomplete.getPlace();
-	console.log(place);
+//	console.log(place);
 
 	for (var component in componentForm) {
 		document.getElementById(component).value = '';
@@ -98,7 +99,8 @@ function geolocate() {
 				//				console.log("Longitude", results[0].geometry.location.lng());
 				//
 
-				fetch("https://developer.nrel.gov/api/utility_rates/v3.json?api_key=DEMO_KEY&lat=" + results[0].geometry.location.lat() + "&lon=" + results[0].geometry.location.lng())
+				// Utility rates
+				fetch("https://developer.nrel.gov/api/utility_rates/v3.json?api_key=1jXG0B0jJJRZt9pJqHljfY6CpCiOZNrzTb8JsRpA&lat=" + results[0].geometry.location.lat() + "&lon=" + results[0].geometry.location.lng())
 					.then((resp) => resp.json())
 					.then(function(data) {
 						console.log(data);
@@ -108,6 +110,30 @@ function geolocate() {
 							$('.commercial').text("Commercial: " + data.outputs.commercial);
 							// Residential utility rate
 							$('.residential').text("Residential: " + data.outputs.residential);
+					
+							// Solar rates
+							fetch("https://developer.nrel.gov/api/solar/solar_resource/v1.json?api_key=1jXG0B0jJJRZt9pJqHljfY6CpCiOZNrzTb8JsRpA&lat=" + results[0].geometry.location.lat() + "&lon=" + results[0].geometry.location.lng())
+								.then((resp) => resp.json())
+								.then(function(data) {
+									console.log(data);
+									// Direct Normal - Angled Roof
+									$('.annual_avg_dni').text("annual_avg_dni: " + data.outputs.avg_dni.annual);
+									// Global Horizontal - Flat roof
+									$('.annual_avg_ghi').text("annual_avg_ghi: " + data.outputs.avg_ghi.annual);
+								
+									var residenceType = $("#residenceType option:selected" ).text();
+									var roofType = $("#roofType option:selected" ).text();
+									var energyUsage = $( "#energyUsage" ).val();
+								
+									console.log("residenceType: ", residenceType);
+									console.log("roofType: ", roofType);
+									console.log("energyUsage: ", energyUsage);
+									
+
+								})
+									.catch(function(error) {
+									console.log(error);
+								}); 
 
 				})
 					.catch(function(error) {
