@@ -183,6 +183,7 @@ function geolocate() {
 						if(yearsSolarEff < 15)
 						{
 							message = "Solar is viable!"
+							$("body").css('background','linear-gradient(to bottom,  #8cd98c 0%,#40bf40 35%,yellow 36%,yellow 100%)');
 						}
 						else{
 							message = "Solar is not the best option based on your selection!";
