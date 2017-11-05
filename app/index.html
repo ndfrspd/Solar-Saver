@@ -42,7 +42,7 @@
 				<input id="autocomplete" placeholder="Enter your address"
 							 onFocus="geolocate()" type="text">
 			</div>
-			
+
 			<div class="residenceType">
 				<div class="input-field col s12 m12 l12" id="residenceType">
 					<select>
@@ -53,7 +53,7 @@
 					</select>
 				</div>
 			</div>
-			
+
 			<div class="roofType">
 				<div class="input-field col s12 m12 l12" id="roofType">
 					<select>
@@ -63,45 +63,46 @@
 					</select>
 				</div>
 			</div>
-			
+
 			<div class="energyUsage">
 				<input id="energyUsage" placeholder="Energy usage per month (KwH)" type="number">
 			</div>
-			
-			<a class="waves-effect waves-light btn" href="#!/savings"><i class="material-icons right">cloud</i>button</a>
+			<!--
 
-			<table id="address">
-				<tr>
-					<td class="label">Street address</td>
-					<td class="slimField">
-						<input class="field" id="street_number" disabled="true">
-					</td>
-					<td class="wideField" colspan="2">
-						<input class="field" id="route" disabled="true">
-					</td>
-				</tr>
-				<tr>
-					<td class="label">City</td>
-					<td class="wideField" colspan="3">
-						<input class="field" id="locality" disabled="true">
-					</td>
-				</tr>
-				<tr>
-					<td class="label">State</td>
-					<td class="slimField">
-						<input class="field" id="administrative_area_level_1" disabled="true">
-					</td>
-					<td class="label">Zip code</td>
-					<td class="wideField">
-						<input class="field" id="postal_code" disabled="true"></td>
-				</tr>
-				<tr>
-					<td class="label">Country</td>
-					<td class="wideField" colspan="3">
-						<input class="field" id="country" disabled="true">
-					</td>
-				</tr>
-			</table>
+<a class="waves-effect waves-light btn" href="#!/savings" id="searchbtn"><i class="material-icons right">cloud</i>Search</a>
+-->
+
+			<button class="btn waves-effect waves-light" type="submit" name="action" id="searchbtn">Submit
+				<i class="material-icons right">send</i>
+			</button>
+
+			<div class="responseBoard">
+				<div class="row">
+					<div class="col s12 m6 l6">
+						<div class="card blue-grey darken-1">
+							<div class="card-content white-text">
+								<span class="card-title">NREL API UTILITY RATES</span>
+								<p class="industrial"></p>
+								<p class="commercial"></p>
+								<p class="residential"></p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col s12 m6 l6">
+						<div class="card blue-grey darken-1">
+							<div class="card-content white-text">
+								<span class="card-title">NREL API SOLAR RATES</span>
+								<p class="annual_avg_dni"></p>
+								<p class="annual_avg_ghi"></p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
 
 		</div>
 
