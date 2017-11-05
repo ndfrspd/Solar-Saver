@@ -1,4 +1,4 @@
-##HackAE - Solar Saver Web Application
+## HackAE - Solar Saver Web Application
 
 ## Inspiration
 
